@@ -1,95 +1,77 @@
-const input = document.getElementById("classInput");
-const applyBtn = document.getElementById("applyBtn");
 const preview = document.getElementById("previewBox");
+let prev = "";
 
-let historyStack = [];
-
-
-function flash(el) {
-    el.style.boxShadow = "0 0 30px #0ea5e9";
-
-    setTimeout(() => {
-        el.style.boxShadow = "";
-    }, 200);
+function apply() {
+    prev = preview.className;
+    preview.className = document.getElementById("classInput").value;
 }
 
-// APPLY
-applyBtn.onclick = () => {
+function undo() {
+    preview.className = prev;
+}
 
-    const current = input.value;
+function save() {
+    localStorage.setItem("classes", document.getElementById("classInput").value);
+    alert("Saved");
+}
 
-    historyStack.push(current);
+function load() {
+    document.getElementById("classInput").value = localStorage.getItem("classes");
+}
 
-    preview.className = "";
+function copy() {
+    navigator.clipboard.writeText(document.getElementById("classInput").value);
+    alert("Copied");
+}
 
-    current.split(" ").forEach(cls => {
-        if (cls.startsWith("commit-")) {
-            preview.classList.add(cls);
-        }
-    });
+function applyPreset(val) {
+    document.getElementById("classInput").value = val;
+    apply();
+}
 
-    const params = new URLSearchParams();
-    params.set("styles", input.value);
-    window.history.replaceState({}, "", "?" + params.toString());
-};
+function scrollToPlayground() {
+    document.getElementById("playground").scrollIntoView();
+}
 
+/* NAV */
+function openDocs() {
+    alert("Docs: commit-p-10, commit-bg-blue, commit-text-white");
+}
 
-// UNDO
-document.getElementById("undoBtn").onclick = () => {
+function openGithub() {
+    window.open("https://github.com/shiikharrr/CommitUi");
+}
 
-    if (historyStack.length < 2) {
-        return alert("Nothing to undo");
-    }
+function openConfig() {
+    alert("Edit commit.js for config");
+}
 
-    historyStack.pop();
-    const previous = historyStack[historyStack.length - 1];
+function openAbout() {
+    alert("Built by thecleancommit");
+}
 
-    input.value = previous;
-    applyBtn.click();
-};
+function openLicense() {
+    alert("MIT License");
+}
 
+/* 🔥 CURSOR GLOW */
+const glow = document.createElement("div");
+glow.className = "cursor-glow";
+document.body.appendChild(glow);
 
-// SAVE
-document.getElementById("savePreset").onclick = () => {
-    localStorage.setItem("commit-preset", input.value);
-    alert("Saved!");
-};
+document.addEventListener("mousemove", (e) => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
 
+/* ✨ PARTICLE TRAIL */
+document.addEventListener("mousemove", (e) => {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = e.clientX + "px";
+    particle.style.top = e.clientY + "px";
 
-// LOAD
-document.getElementById("loadPreset").onclick = () => {
-    const data = localStorage.getItem("commit-preset");
+    document.body.appendChild(particle);
 
-    if (!data) return alert("No preset found");
-
-    input.value = data;
-};
-
-
-// COPY
-document.getElementById("copyBtn").onclick = () => {
-    navigator.clipboard.writeText(input.value);
-    alert("Copied!");
-};
-
-
-// NAV
-document.getElementById("githubBtn").onclick = () => {
-    window.open("https://github.com/shiikharrr/CommitUi", "_blank");
-};
-
-document.getElementById("docsBtn").onclick = () => alert("Docs coming soon");
-document.getElementById("configBtn").onclick = () => alert("Config coming soon");
-document.getElementById("aboutBtn").onclick = () => alert("Built by thecleancommit 🚀");
-
-
-// AUTO LOAD FROM URL
-window.onload = () => {
-    const params = new URLSearchParams(window.location.search);
-    const styles = params.get("styles");
-
-    if (styles) {
-        input.value = styles;
-        applyBtn.click();
-    }
-};
+    setTimeout(() => particle.remove(), 500);
+});

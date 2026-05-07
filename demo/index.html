@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>CommitUI</title>
 
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="./style.css">
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -13,93 +12,93 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <body>
 
-<div class="container">
-
 <header class="nav">
     <div class="logo">
         <i class="fa-solid fa-code-branch"></i> CommitUI
     </div>
 
     <div class="nav-links">
-        <span id="docsBtn">Docs</span>
-        <span id="githubBtn">GitHub</span>
-        <span id="configBtn">Config</span>
-        <span id="aboutBtn">About</span>
+        <button onclick="openDocs()">Docs</button>
+        <button onclick="openGithub()">GitHub</button>
+        <button onclick="openConfig()">Config</button>
+        <button onclick="openAbout()">About</button>
     </div>
 </header>
 
 <section class="hero">
 
-<div class="hero-left">
+<div>
     <h1>Write Classes.<br><span>See Magic.</span></h1>
     <p>Runtime utility-first CSS engine</p>
-
-    <button id="tryBtn" class="primary">⚡ Try Playground</button>
+    <button onclick="scrollToPlayground()">⚡ Try Playground</button>
 </div>
 
-<div class="panel hero-card">
-    <h3><i class="fa-solid fa-code-branch"></i> COMMIT ENGINE</h3>
-    <ul>
-        <li>✔ Scanning DOM</li>
-        <li>✔ Parsing Classes</li>
-        <li>✔ Applying Styles</li>
-        <li>✔ Live Preview</li>
-    </ul>
+<div class="commit-card">
+    <div>
+        <h3>COMMIT ENGINE</h3>
+        <ul>
+            <li>✔ Scanning DOM</li>
+            <li>✔ Parsing Classes</li>
+            <li>✔ Applying Styles</li>
+            <li>✔ Live Preview</li>
+        </ul>
+    </div>
+    <i class="fa-solid fa-code-branch commit-icon"></i>
 </div>
 
 </section>
 
-<section class="grid">
+<section id="playground" class="grid">
 
-<!-- PLAYGROUND -->
-<div class="panel">
+<div class="card">
     <h3>PLAYGROUND</h3>
 
-    <input id="classInput" placeholder="commit-p-40 commit-bg-blue">
+    <input id="classInput" value="commit-p-40 commit-bg-blue">
 
-    <div class="actions">
-        <button id="applyBtn" class="primary">Apply</button>
-        <button id="undoBtn" class="secondary">Undo</button>
+    <div>
+        <button onclick="apply()">Apply</button>
+        <button onclick="undo()">Undo</button>
     </div>
 
-    <div class="actions">
-        <button id="savePreset" class="ghost">Save</button>
-        <button id="loadPreset" class="ghost">Load</button>
+    <div>
+        <button onclick="save()">Save</button>
+        <button onclick="load()">Load</button>
     </div>
 </div>
 
-
-<!-- PREVIEW -->
-<div class="panel">
+<div class="card">
     <h3>LIVE PREVIEW</h3>
     <div id="previewBox">Preview Box</div>
 </div>
 
-
-<!-- COMPONENTS -->
-<div class="panel">
+<div class="card">
     <h3>COMPONENTS</h3>
 
-    <button id="copyBtn" class="ghost full">Copy Classes</button>
+    <button onclick="copy()">Copy Classes</button>
 
-    <div class="components-grid">
-        <button class="commit-p-10 commit-bg-blue commit-text-white commit-rounded-8">
-            Primary
-        </button>
-
-        <button class="commit-p-10 commit-bg-green commit-text-white commit-rounded-8">
-            Success
-        </button>
-
-        <button class="commit-p-10 commit-bg-red commit-text-white commit-rounded-8">
-            Danger
-        </button>
+    <div class="components">
+        <button onclick="applyPreset('commit-bg-blue commit-text-white')">Primary</button>
+        <button onclick="applyPreset('commit-bg-green commit-text-white')">Success</button>
+        <button onclick="applyPreset('commit-bg-red commit-text-white')">Danger</button>
     </div>
 </div>
 
 </section>
 
-</div>
+<footer>
+    <div>
+        <h3>CommitUI</h3>
+        <p>Runtime CSS engine for modern web apps</p>
+    </div>
+
+    <div>
+        <button onclick="openGithub()">GitHub</button>
+        <button onclick="openDocs()">Docs</button>
+        <button onclick="openLicense()">License</button>
+    </div>
+
+    <p>© 2026 thecleancommit — Built with ⚡</p>
+</footer>
 
 <script type="module" src="../engine/commit.js"></script>
 <script src="app.js"></script>

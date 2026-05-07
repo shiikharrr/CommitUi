@@ -1,156 +1,335 @@
+/* ===============================
+   ELITE NEON GRID BACKGROUND
+================================= */
+
+:root {
+  --bg: #020617;
+  --grid: rgba(14,165,233,0.08);
+  --grid-strong: rgba(14,165,233,0.14);
+  --glow: rgba(14,165,233,0.25);
+}
+
+/* Base */
 body {
-    margin: 0;
-    font-family: Arial;
-    background: #020617;
-    color: #e0f2ff;
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-x: hidden;
 }
 
-/* GRID BACKGROUND */
+/* Fine grid */
 body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background:
-        linear-gradient(rgba(14,165,233,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(14,165,233,0.08) 1px, transparent 1px);
-    background-size: 50px 50px;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+
+  background-size: 28px 28px;
+  opacity: 0.6;
+
+  animation: gridMove 40s linear infinite;
 }
 
-/* layout */
-.container {
-    padding: 20px;
+/* Coarse grid (stronger lines) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px);
+
+  background-size: 140px 140px;
+  opacity: 0.4;
+
+  animation: gridMoveSlow 90s linear infinite;
+}
+
+/* Soft glow vignette */
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(800px 400px at 20% 10%, var(--glow), transparent 60%),
+    radial-gradient(600px 300px at 80% 20%, var(--glow), transparent 60%),
+    radial-gradient(900px 500px at 50% 90%, var(--glow), transparent 60%);
+}
+
+/* Ensure content sits above grid */
+.page,
+.container,
+.nav,
+.hero,
+.grid,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle movement */
+@keyframes gridMove {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 120px 120px, 120px 120px; }
+}
+
+@keyframes gridMoveSlow {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: -200px 200px, -200px 200px; }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #020617;
+    color: #e2e8f0;
 }
 
 /* NAV */
 .nav {
     display: flex;
     justify-content: space-between;
+    padding: 20px 40px;
 }
 
 .logo {
-    color: #0ea5e9;
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.nav-links button {
+    background: transparent;
+    border: 1px solid #0ea5e9;
+    color: #38bdf8;
+    padding: 6px 12px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-links button:hover {
+    background: #0ea5e9;
+    color: white;
 }
 
 /* HERO */
 .hero {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
+    padding: 60px 40px;
 }
 
-.hero-left {
-    width: 50%;
+.hero h1 {
+    font-size: 42px;
 }
 
-.hero-left span {
-    color: #0ea5e9;
+.hero span {
+    color: #38bdf8;
 }
 
-.hero-card {
-    width: 320px;
-}
-
-/* PANELS (GLASS) */
-.panel {
-    background: rgba(15,23,42,0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(14,165,233,0.4);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(14,165,233,0.2);
+/* BUTTON */
+button {
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    margin: 5px 5px 0 0;
+    border-radius: 6px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.panel:hover {
-    box-shadow: 0 0 40px rgba(14,165,233,0.5);
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 20px;
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px #0ea5e9;
 }
 
 /* INPUT */
 input {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-
-    border-radius: 10px;
-    border: 1px solid rgba(14,165,233,0.5);
-
-    background: rgba(2,6,23,0.7);
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #0ea5e9;
     color: white;
-
+    border-radius: 6px;
+    margin-bottom: 10px;
     outline: none;
-    transition: 0.2s;
 }
 
 input:focus {
-    border-color: #0ea5e9;
-    box-shadow: 0 0 10px rgba(14,165,233,0.5);
+    box-shadow: 0 0 10px #0ea5e9;
 }
 
-/* BUTTON BASE */
-button {
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: 0.2s;
-    border: none;
-    color: white;
-}
-
-/* BUTTON TYPES */
-.primary {
-    background: linear-gradient(135deg, #0ea5e9, #2563eb);
-    box-shadow: 0 0 15px rgba(14,165,233,0.7);
-}
-
-.secondary {
-    background: rgba(14,165,233,0.2);
+/* COMMIT CARD */
+.commit-card {
     border: 1px solid #0ea5e9;
-}
-
-.ghost {
-    background: transparent;
-    border: 1px solid rgba(14,165,233,0.4);
-    color: #0ea5e9;
-}
-
-.full {
-    width: 100%;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(14,165,233,0.9);
-}
-
-/* ACTION GROUP */
-.actions {
+    border-radius: 10px;
+    padding: 20px;
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 30px;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(14,165,233,0.5);
 }
 
-/* COMPONENT GRID */
-.components-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 15px;
+.commit-icon {
+    font-size: 60px;
+    color: #38bdf8;
+}
+
+/* GRID */
+.grid {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+}
+
+/* CARD */
+.card {
+    flex: 1;
+    border: 1px solid #0ea5e9;
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(14,165,233,0.2);
 }
 
 /* PREVIEW */
 #previewBox {
-    margin-top: 30px;
+    background: #1e293b;
     padding: 40px;
-    background: rgba(30,41,59,0.5);
     border-radius: 10px;
-    transition: 0.2s;
+    text-align: center;
+}
+
+/* COMPONENT BUTTONS */
+.components button {
+    margin-top: 10px;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #0ea5e9;
+    padding: 30px 40px;
+    margin-top: 40px;
+}
+
+/* Glass boost for cards */
+.card, .commit-card {
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 25px rgba(14,165,233,0.25),
+    inset 0 0 10px rgba(14,165,233,0.08);
+}
+
+/* Stronger neon hover */
+button:hover {
+  box-shadow:
+    0 0 12px #0ea5e9,
+    0 0 24px rgba(14,165,233,0.6);
+}
+
+/* Title glow */
+.hero span {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56,189,248,0.8);
+}
+
+/* 🔥 CURSOR GLOW */
+.cursor-glow {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(14,165,233,0.25), transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+/* ✨ PARTICLES */
+.particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #0ea5e9;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fadeOut 0.5s linear forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+/* ⚡ ANIMATED BORDER */
+.card, .commit-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before,
+.commit-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    padding: 1px;
+    background: linear-gradient(120deg, #0ea5e9, transparent, #2563eb);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: borderMove 3s linear infinite;
+}
+
+@keyframes borderMove {
+    0% { background-position: 0% }
+    100% { background-position: 200% }
+}
+
+/* 🧠 BUTTON MICRO INTERACTION */
+button:active {
+    transform: scale(0.95);
+}
+
+/* 💡 INPUT GLOW PULSE */
+input:focus {
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 5px #0ea5e9; }
+    to { box-shadow: 0 0 20px #0ea5e9; }
+}
+
+/* 🌊 HERO TEXT FLOAT */
+.hero h1 {
+    animation: floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
