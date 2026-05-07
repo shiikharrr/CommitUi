@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CommitUI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>⚡ CommitUI</h1>
+        <p>by thecleancommit</p>
+        <h2>Write Classes. <span>See Magic.</span></h2>
+    </div>
+
+
+    <!-- PLAYGROUND -->
+    <div class="playground">
+
+        <div class="editor">
+
+            <input id="classInput"
+                placeholder="commit-p-40 commit-bg-blue commit-text-white" />
+
+            <button id="applyBtn">Apply</button>
+
+            <div class="chips">
+                <span>commit-p-40</span>
+                <span>commit-bg-blue</span>
+                <span>commit-text-white</span>
+                <span>commit-rounded-10</span>
+            </div>
+
+        </div>
+
+
+        <div class="preview">
+            <div id="previewBox">Preview Box</div>
+        </div>
+
+    </div>
+
+
+    <!-- COMPONENTS -->
+    <div class="components">
+
+        <button class="commit-p-10 commit-bg-blue commit-text-white commit-rounded-8">
+            Primary
+        </button>
+
+        <button class="commit-p-10 commit-bg-green commit-text-white commit-rounded-8">
+            Success
+        </button>
+
+        <button class="commit-p-10 commit-bg-red commit-text-white commit-rounded-8">
+            Danger
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module" src="../engine/commit.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

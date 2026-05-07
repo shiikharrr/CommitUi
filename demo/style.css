@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: radial-gradient(circle at top, #020617, #000);
+    color: #38bdf8;
+}
+
+.app {
+    padding: 20px;
+}
+
+/* hero */
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero span {
+    color: #0ea5e9;
+}
+
+/* playground */
+.playground {
+    display: flex;
+    margin-top: 40px;
+}
+
+.editor {
+    width: 40%;
+}
+
+.editor input {
+    width: 100%;
+    padding: 10px;
+}
+
+.editor button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #0ea5e9;
+    border: none;
+}
+
+.preview {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#previewBox {
+    padding: 30px;
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+/* chips */
+.chips span {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #0ea5e9;
+    cursor: pointer;
+}
+
+/* components */
+.components {
+    margin-top: 40px;
+}
+
+.components button {
+    margin-right: 10px;
+}
