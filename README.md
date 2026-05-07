@@ -14,6 +14,7 @@ A lightweight runtime utility-first CSS engine inspired by Tailwind.
 
 ```html
 <div class="commit-p-20 commit-bg-blue commit-text-white"></div>
+```
 
 ---
 
