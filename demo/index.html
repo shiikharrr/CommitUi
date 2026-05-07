@@ -3,51 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <title>CommitUI</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<div class="app">
+<div class="container">
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>⚡ CommitUI</h1>
-        <p>by thecleancommit</p>
-        <h2>Write Classes. <span>See Magic.</span></h2>
+<header class="nav">
+    <div class="logo">
+        <i class="fa-solid fa-code-branch"></i> CommitUI
     </div>
 
+    <div class="nav-links">
+        <span id="docsBtn">Docs</span>
+        <span id="githubBtn">GitHub</span>
+        <span id="configBtn">Config</span>
+        <span id="aboutBtn">About</span>
+    </div>
+</header>
 
-    <!-- PLAYGROUND -->
-    <div class="playground">
+<section class="hero">
 
-        <div class="editor">
+<div class="hero-left">
+    <h1>Write Classes.<br><span>See Magic.</span></h1>
+    <p>Runtime utility-first CSS engine</p>
 
-            <input id="classInput"
-                placeholder="commit-p-40 commit-bg-blue commit-text-white" />
+    <button id="tryBtn" class="primary">⚡ Try Playground</button>
+</div>
 
-            <button id="applyBtn">Apply</button>
+<div class="panel hero-card">
+    <h3><i class="fa-solid fa-code-branch"></i> COMMIT ENGINE</h3>
+    <ul>
+        <li>✔ Scanning DOM</li>
+        <li>✔ Parsing Classes</li>
+        <li>✔ Applying Styles</li>
+        <li>✔ Live Preview</li>
+    </ul>
+</div>
 
-            <div class="chips">
-                <span>commit-p-40</span>
-                <span>commit-bg-blue</span>
-                <span>commit-text-white</span>
-                <span>commit-rounded-10</span>
-            </div>
+</section>
 
-        </div>
+<section class="grid">
 
+<!-- PLAYGROUND -->
+<div class="panel">
+    <h3>PLAYGROUND</h3>
 
-        <div class="preview">
-            <div id="previewBox">Preview Box</div>
-        </div>
+    <input id="classInput" placeholder="commit-p-40 commit-bg-blue">
 
+    <div class="actions">
+        <button id="applyBtn" class="primary">Apply</button>
+        <button id="undoBtn" class="secondary">Undo</button>
     </div>
 
+    <div class="actions">
+        <button id="savePreset" class="ghost">Save</button>
+        <button id="loadPreset" class="ghost">Load</button>
+    </div>
+</div>
 
-    <!-- COMPONENTS -->
-    <div class="components">
 
+<!-- PREVIEW -->
+<div class="panel">
+    <h3>LIVE PREVIEW</h3>
+    <div id="previewBox">Preview Box</div>
+</div>
+
+
+<!-- COMPONENTS -->
+<div class="panel">
+    <h3>COMPONENTS</h3>
+
+    <button id="copyBtn" class="ghost full">Copy Classes</button>
+
+    <div class="components-grid">
         <button class="commit-p-10 commit-bg-blue commit-text-white commit-rounded-8">
             Primary
         </button>
@@ -59,8 +94,10 @@
         <button class="commit-p-10 commit-bg-red commit-text-white commit-rounded-8">
             Danger
         </button>
-
     </div>
+</div>
+
+</section>
 
 </div>
 

@@ -1,7 +1,6 @@
 import { commitConfig } from "./config.js";
 
-function parseClass(el, cls) {
-
+function applyClass(el, cls) {
     if (!cls.startsWith("commit-")) return;
 
     const parts = cls.replace("commit-", "").split("-");
@@ -12,6 +11,10 @@ function parseClass(el, cls) {
 
         case "p":
             el.style.padding = commitConfig.spacing[value] || value + "px";
+            break;
+
+        case "m":
+            el.style.margin = commitConfig.spacing[value] || value + "px";
             break;
 
         case "bg":
@@ -29,47 +32,20 @@ function parseClass(el, cls) {
         case "rounded":
             el.style.borderRadius = commitConfig.radius[value] || value + "px";
             break;
-
-        case "flex":
-            el.style.display = "flex";
-            break;
-
-        case "items":
-            el.style.alignItems = value;
-            break;
-
-        case "justify":
-            el.style.justifyContent = value;
-            break;
-
-        case "w":
-            el.style.width = value + "px";
-            break;
-
-        case "h":
-            el.style.height = value + "px";
-            break;
     }
 }
 
-
-// apply to element
 function apply(el) {
-    [...el.classList].forEach(cls => parseClass(el, cls));
+    [...el.classList].forEach(cls => applyClass(el, cls));
 }
 
-
-// scan DOM
 function scanDOM() {
     document.querySelectorAll("*").forEach(apply);
 }
 
-
-// mutation observer (🔥 core feature)
 function observe() {
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(mutations => {
         mutations.forEach(m => {
-
             m.addedNodes.forEach(node => {
                 if (node.nodeType === 1) {
                     apply(node);
@@ -80,7 +56,6 @@ function observe() {
             if (m.type === "attributes") {
                 apply(m.target);
             }
-
         });
     });
 
@@ -90,7 +65,6 @@ function observe() {
         attributes: true
     });
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     scanDOM();
